@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hytaco.AfficherUtilisateursController">
+   <children>
+      <TabPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Utilisateur">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="871.0">
+                     <children>
+                        <Button fx:id="inscription_i" layoutX="817.0" layoutY="410.0" mnemonicParsing="false" onAction="#InscriptionUtilisateur" text="Submit" />
+                        <TextField fx:id="nom_i" layoutX="722.0" layoutY="115.0" />
+                        <TextField fx:id="prenom_i" layoutX="722.0" layoutY="162.0" />
+                        <TextField fx:id="adresse_i" layoutX="722.0" layoutY="199.0" />
+                        <TextField fx:id="telephone_i" layoutX="722.0" layoutY="247.0" />
+                        <TextField fx:id="email_i" layoutX="722.0" layoutY="293.0" />
+                        <PasswordField fx:id="password_i" layoutX="722.0" layoutY="340.0" />
+                        <Label layoutX="623.0" layoutY="116.0" text="Nom">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="623.0" layoutY="163.0" text="Prenom">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="623.0" layoutY="200.0" text="Adresse">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="623.0" layoutY="248.0" text="Telepone">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="623.0" layoutY="292.0" text="E-mail">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="623.0" layoutY="344.0" text="Mot de passe">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="utilisateurs" layoutX="56.0" layoutY="116.0" prefHeight="285.0" prefWidth="446.0">
+                          <columns>
+                            <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
+                            <TableColumn fx:id="prenom" prefWidth="75.0" text="Prenom" />
+                              <TableColumn fx:id="mail" prefWidth="75.0" text="E-mail" />
+                              <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+                              <TableColumn fx:id="telephone" prefWidth="75.0" text="Telephone" />
+                              <TableColumn fx:id="roles" prefWidth="69.0" text="Roles" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="151.0" layoutY="24.0" text="Nom :" />
+                        <TextField fx:id="searchu" layoutX="204.0" layoutY="20.0" />
+                        <Button fx:id="importer_i" layoutX="799.0" layoutY="380.0" mnemonicParsing="false" onAction="#importer" prefHeight="25.0" prefWidth="72.0" text="importer" />
+                        <Label layoutX="627.0" layoutY="385.0" text="Image">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tf_image" layoutX="726.0" layoutY="380.0" prefHeight="25.0" prefWidth="74.0" />
+                        <Separator layoutX="565.0" layoutY="140.0" orientation="VERTICAL" prefHeight="200.0" />
+                        <Label fx:id="e_mail" layoutX="722.0" layoutY="275.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="e_telephone" layoutX="724.0" layoutY="230.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="e_password" layoutX="724.0" layoutY="318.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="e_nom" layoutX="725.0" layoutY="88.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="e_prenom" layoutX="723.0" layoutY="140.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="supprimer_u" layoutX="430.0" layoutY="423.0" mnemonicParsing="false" onAction="#SupprimerUtilisateur" text="Supprimer" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Commandes">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="571.0" prefWidth="850.0">
+                     <children>
+                        <Label fx:id="test" layoutX="589.0" layoutY="113.0" />
+                        <TableView fx:id="commande" layoutX="126.0" layoutY="82.0" prefHeight="285.0" prefWidth="448.0">
+                           <columns>
+                              <TableColumn fx:id="id" prefWidth="70.0" text="ID" />
+                              <TableColumn fx:id="produit" text="Produit" />
+                              <TableColumn fx:id="client" prefWidth="75.0" text="Client" />
+                              <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
+                              <TableColumn fx:id="quantite" prefWidth="75.0" text="Quantite" />
+                              <TableColumn fx:id="prix" prefWidth="75.0" text="Prix" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="supprimercom" layoutX="532.0" layoutY="401.0" mnemonicParsing="false" onAction="#supprimerCommande" text="Supprimer" />
+                        <TextField fx:id="search" layoutX="172.0" layoutY="42.0" />
+                        <Label layoutX="126.0" layoutY="46.0" text="Nom :" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
