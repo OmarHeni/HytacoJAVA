@@ -8,6 +8,7 @@ package hytaco;
 import Entites.Utilisateur;
 import Services.ServiceUtilisateur;
 import Services.UserSession;
+import animatefx.animation.SlideInRight;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -23,11 +24,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -37,15 +37,10 @@ import javafx.stage.Window;
 public class LoginController implements Initializable {
 
     @FXML
-    private Label label;
-    @FXML
     private PasswordField password_lo;
     @FXML
     private TextField email_lo;
-    @FXML
     private Button login;
-    @FXML
-    private Button inscription_i;
     @FXML
     private TextField nom_i;
     @FXML
@@ -58,17 +53,29 @@ public class LoginController implements Initializable {
     private TextField email_i;
     @FXML
     private PasswordField password_i;
+    @FXML
+    private Button sign_up_l;
+    @FXML
+    private Button sign_in_l;
+    @FXML
+    private Button sign_up_s;
+    @FXML
+    private Button sign_in_s;
+    @FXML
+    private TextField tf_image;
+    @FXML
+    private Pane pane_signup;
+    @FXML
+    private Pane pane_signin;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        email_lo.setText("omar.elheni@esprit.tn");
-        password_lo.setText("stanger");
+   
     }    
 
-    @FXML
     private void LoginUtilisateur(ActionEvent event) throws IOException {
          ServiceUtilisateur us = new ServiceUtilisateur();
 
@@ -101,7 +108,6 @@ public class LoginController implements Initializable {
             });
                        
 }
-    @FXML
     private void InscriptionUtilisateur(ActionEvent event) {
                  ServiceUtilisateur us = new ServiceUtilisateur();
                  Utilisateur user = new Utilisateur(nom_i.getText(),prenom_i.getText(), Integer.parseInt(telephone_i.getText())
@@ -117,7 +123,19 @@ public class LoginController implements Initializable {
                  alert.setContentText("Echec");
                  alert.show();}
                  
-                 
+    }
+
+    @FXML
+    private void To_signin(ActionEvent event) {
+        new SlideInRight(pane_signin).play();
+        pane_signin.toFront();
+        
+    }
+
+    @FXML
+    private void To_signup(ActionEvent event) {
+         new SlideInRight(pane_signup).play();
+        pane_signup.toFront();
     }
     
 }
