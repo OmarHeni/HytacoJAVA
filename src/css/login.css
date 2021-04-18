@@ -16,7 +16,7 @@ and open the template in the editor.
 }
 .button{
     -fx-text-fill: #ffffff;
-    -fx-background-color:  linear-gradient(to bottom right,#65e799,#4dc47d);
+    -fx-background-color:  linear-gradient(to bottom right,#75eba4,#4dc47d);
 }
 text-input:pressed {
     -fx-border-color: #59ff9c ;

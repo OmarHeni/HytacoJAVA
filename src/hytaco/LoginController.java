@@ -8,7 +8,7 @@ package hytaco;
 import Entites.Utilisateur;
 import Services.ServiceUtilisateur;
 import Services.UserSession;
-import animatefx.animation.SlideInRight;
+import animatefx.animation.ZoomIn;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
@@ -28,6 +28,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -40,6 +41,7 @@ public class LoginController implements Initializable {
     private PasswordField password_lo;
     @FXML
     private TextField email_lo;
+    @FXML
     private Button login;
     @FXML
     private TextField nom_i;
@@ -67,6 +69,8 @@ public class LoginController implements Initializable {
     private Pane pane_signup;
     @FXML
     private Pane pane_signin;
+    @FXML
+    private Button closeb;
 
     /**
      * Initializes the controller class.
@@ -76,6 +80,7 @@ public class LoginController implements Initializable {
    
     }    
 
+    @FXML
     private void LoginUtilisateur(ActionEvent event) throws IOException {
          ServiceUtilisateur us = new ServiceUtilisateur();
 
@@ -98,7 +103,7 @@ public class LoginController implements Initializable {
                       root = FXMLLoader.load(getClass().getResource("Panier.fxml"));
                                         }
                     Stage window = (Stage) login.getScene().getWindow();
-                    window.setScene(new Scene(root,900,600));
+                    window.setScene(new Scene(root));
                 } catch (IOException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -113,29 +118,31 @@ public class LoginController implements Initializable {
                  Utilisateur user = new Utilisateur(nom_i.getText(),prenom_i.getText(), Integer.parseInt(telephone_i.getText())
                          ,adresse_i.getText(),password_i.getText(),email_i.getText());
                  if(us.Inscription(user)==1){
-                       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 alert.setTitle("login");
-                 alert.setContentText("Succes");
-                 alert.showAndWait();
+                   
             }else {
-                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                 alert.setTitle("login");
-                 alert.setContentText("Echec");
-                 alert.show();}
+                       
+                 }
+                 
                  
     }
 
     @FXML
     private void To_signin(ActionEvent event) {
-        new SlideInRight(pane_signin).play();
+        new ZoomIn(pane_signin).play();
         pane_signin.toFront();
         
     }
 
     @FXML
     private void To_signup(ActionEvent event) {
-         new SlideInRight(pane_signup).play();
+         new ZoomIn(pane_signup).play();
         pane_signup.toFront();
+    }
+
+    @FXML
+    private void Close(ActionEvent event) {
+        Stage window = (Stage) closeb.getScene().getWindow();
+        window.close();
     }
     
 }

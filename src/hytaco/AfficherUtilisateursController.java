@@ -9,8 +9,11 @@ import Entites.CommandeAff;
 import Entites.Utilisateur;
 import Services.ServiceCommande;
 import Services.ServiceUtilisateur;
+import Services.UserSession;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +40,12 @@ import org.apache.commons.io.FileUtils;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
@@ -76,8 +85,6 @@ public class AfficherUtilisateursController implements Initializable {
     private TableColumn<Utilisateur, String> roles;
     
     @FXML
-    private Button inscription_i;
-    @FXML
     private Button supprimercom;
     @FXML
     private TextField nom_i;
@@ -101,8 +108,6 @@ public class AfficherUtilisateursController implements Initializable {
     @FXML
     private TextField tf_image;
     @FXML
-    private Button importer_i;
-    @FXML
     private Label e_mail;
     @FXML
     private Label e_telephone;
@@ -114,13 +119,25 @@ public class AfficherUtilisateursController implements Initializable {
     private Label e_prenom;
     @FXML
     private Button supprimer_u;
+    @FXML
+    private PasswordField confirm_i;
+    @FXML
+    private Button importb;
+    @FXML
+    private Button modifier_u;
+    @FXML
+    private Button closeb;
+    @FXML
+    private Circle circle;
+    @FXML
+    private FontAwesomeIcon arrow;
+    @FXML
+    private Label nom_u;
 
     /**
      * Initializes the controller class.
      */
     public void initializeCommande(){
-                datacoms.clear();
-
         ServiceCommande us = new ServiceCommande();
             id.setCellValueFactory(new PropertyValueFactory<>("id"));
             produit.setCellValueFactory(new PropertyValueFactory<>("nom_produit"));
@@ -169,7 +186,19 @@ public class AfficherUtilisateursController implements Initializable {
 		sortedData.comparatorProperty().bind(commande.comparatorProperty());
 		commande.setItems(sortedData);
     }
+    public void setImage() {
+        File file = new File ("C:\\Users\\user\\Documents\\JAVA\\Hytaco\\src\\image\\"+UserSession.getInstace().getUtilisateur().getImage_name());
+ 
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(AfficherUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void initializeUtilisateurs(){
+        nom_u.setText(UserSession.getInstace().getUtilisateur().getPrenom()+" "+UserSession.getInstace().getUtilisateur().getNom());
+        setImage();
+      
         observableList.clear();
         ServiceUtilisateur us = new ServiceUtilisateur();
             nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -276,12 +305,14 @@ e_password.setText("Votre mot de passe est invalid");
     }
         @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initializeCommande();
+
+     
+
+       // initializeCommande();
         initializeUtilisateurs();
 
     }   
     
-    @FXML
     private void InscriptionUtilisateur(ActionEvent event) {
         if (e_password.getText().equals("")&& e_nom.getText().equals("")&& e_prenom.getText().equals("")&& e_telephone.getText().equals("")&& e_mail.getText().equals("") ){
                  ServiceUtilisateur us = new ServiceUtilisateur();
@@ -372,6 +403,12 @@ e_password.setText("Votre mot de passe est invalid");
         //pour refraichir le tableView
         observableList.remove(comSelect);
         initializeUtilisateurs();
+    }
+
+    @FXML
+    private void Close(ActionEvent event) {
+                Stage window = (Stage) closeb.getScene().getWindow();
+        window.close();
     }
     
 }
