@@ -309,7 +309,7 @@ e_password.setText("Votre mot de passe est invalid");
      
 
        // initializeCommande();
-        initializeUtilisateurs();
+        //initializeUtilisateurs();
 
     }   
     
