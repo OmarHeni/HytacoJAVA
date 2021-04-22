@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="713.0" prefWidth="1247.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidevjavafx1.MainController">
+   <children>
+      <TabPane layoutX="2.0" layoutY="7.0" prefHeight="704.0" prefWidth="1232.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Livraison">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="586.0" prefWidth="1222.0">
+                     <children>
+                        <TableView fx:id="TVLivraison" layoutX="531.0" layoutY="25.0" prefHeight="293.0" prefWidth="628.0">
+                          <columns>
+                            <TableColumn fx:id="colID" prefWidth="76.0" text="ID" />
+                            <TableColumn fx:id="colDateLivraison" prefWidth="158.0" text="DateLivraison" />
+                              <TableColumn fx:id="colAdresse" prefWidth="199.0" text="Adresse" />
+                              <TableColumn fx:id="colLivreur" prefWidth="194.0" text="Livreur" />
+                          </columns>
+                        </TableView>
+                        <VBox layoutX="141.0" layoutY="28.0" prefHeight="204.0" prefWidth="321.0" spacing="20.0">
+                           <children>
+                              <TextField fx:id="tfADRESSE" />
+                              <DatePicker fx:id="tfDATELIVRAISON" />
+                           </children>
+                        </VBox>
+                        <Button fx:id="btnM" layoutX="693.0" layoutY="344.0" mnemonicParsing="false" onAction="#modifierLivraison" prefHeight="25.0" prefWidth="188.0" text="Modifier" />
+                        <Button fx:id="btnS" layoutX="915.0" layoutY="344.0" mnemonicParsing="false" onAction="#supprimerLivraison" prefHeight="25.0" prefWidth="188.0" text="Supprimer" />
+                        <Button fx:id="btnA" layoutX="133.0" layoutY="356.0" mnemonicParsing="false" onAction="#ajouterLivraison" prefHeight="25.0" prefWidth="188.0" text="Ajouter" />
+                        <Label fx:id="idl" opacity="0.0" />
+                        <Label layoutY="70.0" text="Date de livraison">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="23.0" text="Adresse">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Livreur">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="TVLivreur" layoutX="571.0" layoutY="64.0" prefHeight="293.0" prefWidth="628.0">
+                           <columns>
+                              <TableColumn fx:id="colTelephone" prefWidth="125.0" text="NumeroTelephone" />
+                              <TableColumn fx:id="colAdressel" prefWidth="140.0" text="Adresse" />
+                              <TableColumn fx:id="colMail" prefWidth="168.0" text="Mail" />
+                              <TableColumn fx:id="colNom" prefWidth="194.0" text="Nom" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="ajoutliv" layoutX="204.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterLivreur" prefHeight="25.0" prefWidth="188.0" text="Ajouter" />
+                        <Button fx:id="mofliv" layoutX="664.0" layoutY="392.0" mnemonicParsing="false" onAction="#modifierLivreur" prefHeight="25.0" prefWidth="188.0" text="Modifier" />
+                        <Button fx:id="suplivr" layoutX="919.0" layoutY="392.0" mnemonicParsing="false" onAction="#supprimerLivreur" prefHeight="25.0" prefWidth="188.0" text="Supprimer" />
+                        <Label layoutX="-2.0" layoutY="99.0" text="Numero telephone">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="2.0" layoutY="158.0" text="Nom">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="4.0" layoutY="217.0" text="Adresse">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="noml" layoutX="160.0" layoutY="159.0" prefHeight="23.0" prefWidth="275.0" />
+                        <TextField fx:id="adressel" layoutX="159.0" layoutY="218.0" prefHeight="23.0" prefWidth="275.0" />
+                        <TextField fx:id="maill" layoutX="160.0" layoutY="269.0" prefHeight="23.0" prefWidth="275.0" />
+                        <Label layoutX="5.0" layoutY="268.0" text="Mail">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="telephonel" layoutX="161.0" layoutY="100.0" prefHeight="23.0" prefWidth="275.0" />
+                        <Label fx:id="idll" layoutX="159.0" layoutY="493.0" opacity="0.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="PIDEVJAVAFX1.jnlp">
+  <information>
+    <title>PIDEVJAVAFX1</title>
+    <vendor>dell</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="PIDEVJAVAFX1.jar" size="55796" download="eager" />
+    <jar href="lib\AnimateFX-1.2.0.jar" size="85823" download="eager" />
+    <jar href="lib\commons-io-2.8.0.jar" size="285424" download="eager" />
+    <jar href="lib\fontawesomefx-8.1.jar" size="179086" download="eager" />
+    <jar href="lib\jackson-core-asl-1.5.0.jar" size="171612" download="eager" />
+    <jar href="lib\jackson-mapper-asl-1.5.0.jar" size="483809" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
+    <jar href="lib\jbcrypt-0.3m.jar" size="17750" download="eager" />
+    <jar href="lib\jfoenix-8.0.10.jar" size="2710207" download="eager" />
+    <jar href="lib\jfoenix.jar" size="2211776" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\org-netbeans-modules-java-j2seproject-copylibstask.jar" size="112261" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="PIDEVJAVAFX1" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="pidevjavafx1.PIDEVJAVAFX1"  name="PIDEVJAVAFX1" />
+  <update check="always"/>
+</jnlp>
