@@ -298,7 +298,7 @@
                         <TableColumn fx:id="colAdressel" prefWidth="186.0" text="Adresse" />
                      </columns>
                   </TableView>
-                  <Pane layoutX="101.0" layoutY="397.0" prefHeight="304.0" prefWidth="457.0" style="-fx-background-color: WHITE; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);">
+                  <Pane layoutX="85.0" layoutY="335.0" prefHeight="304.0" prefWidth="457.0" style="-fx-background-color: WHITE; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 2, 0, 0, 0);">
                      <children>
                         <VBox layoutX="128.0" layoutY="14.0" prefHeight="237.0" prefWidth="232.0">
                            <children>
@@ -341,6 +341,9 @@
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Button>
+                        <ImageView fx:id="nomCheckMark" fitHeight="25.0" fitWidth="24.0" layoutX="370.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="adresseCheckMark" fitHeight="25.0" fitWidth="24.0" layoutX="370.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="mailCheckMark" fitHeight="25.0" fitWidth="24.0" layoutX="370.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <Button fx:id="mofliv" layoutX="623.0" layoutY="335.0" mnemonicParsing="false" onAction="#modifierLivreur" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4dc47d; -fx-text-fill: white; -fx-background-radius: 4;" text="Modifier" />

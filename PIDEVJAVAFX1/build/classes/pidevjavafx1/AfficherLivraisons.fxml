@@ -245,7 +245,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </FontAwesomeIcon>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="47.0" prefWidth="130.0" style="-fx-background-color: Transparent; -fx-text-fill: #ffffff;" text="Livreurs">
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#Livraisons" prefHeight="47.0" prefWidth="130.0" style="-fx-background-color: Transparent; -fx-text-fill: #ffffff;" text="Livreurs">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -328,6 +328,8 @@
                               <Font name="Arial" size="15.0" />
                            </font>
                         </Button>
+                        <ImageView fx:id="adresseCheckMark" fitHeight="25.0" fitWidth="24.0" layoutX="227.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="dateCheckMark" fitHeight="25.0" fitWidth="24.0" layoutX="227.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <Button fx:id="btnM" layoutX="623.0" layoutY="335.0" mnemonicParsing="false" onAction="#modifierLivraison" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4dc47d; -fx-text-fill: white; -fx-background-radius: 4;" text="Modifier" />
