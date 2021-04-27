@@ -14,29 +14,25 @@ import java.util.Objects;
  */
 public class Produit {
     private Integer id;
-
     private String nom;
-
-
     private Double prix;
-
-  
     private String description;
-
-    
     private Integer quantite;
+    private String image_name;
 
     public Produit() {
     }
 
-    public Produit(Integer id, String nom, Double prix, String description, Integer quantite) {
+    public Produit(Integer id, String nom, Double prix, String description, Integer quantite, String image_name) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.description = description;
         this.quantite = quantite;
+        this.image_name = image_name;
     }
 
+  
    
 
     public Integer getId() {
@@ -77,6 +73,14 @@ public class Produit {
 
     public void setQuantite(Integer quantite) {
         this.quantite = quantite;
+    }
+
+    public String getImage_name() {
+        return image_name;
+    }
+
+    public void setImage_name(String image_name) {
+        this.image_name = image_name;
     }
 
     @Override

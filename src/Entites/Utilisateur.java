@@ -5,13 +5,14 @@
  */
 package Entites;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  *
  * @author user
  */
-public class Utilisateur {
+public  abstract   class  Utilisateur  {
     private int id ;
     private String nom ;
     private String prenom ;
@@ -19,34 +20,26 @@ public class Utilisateur {
     private String adresse ;
     private String password ;
     private String email ;
-    private Set<String> roles;
     private String image_name;
+    private String activation_token ;
+    List<Commande> commandes ;
 
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, int telephone, String adresse, String password, String email, Set<String> roles, String image_name) {
-        this.id = id;
+    public Utilisateur(String nom, String prenom, int telephone, String adresse, String password, String email,  String image_name, String activation_token) {
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
         this.adresse = adresse;
         this.password = password;
         this.email = email;
-        this.roles = roles;
         this.image_name = image_name;
+        this.activation_token = activation_token;
     }
 
-    public Utilisateur(String nom, String prenom, int telephone, String adresse, String password, String email,  String image_name) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.adresse = adresse;
-        this.password = password;
-        this.email = email;
-        this.roles = roles;
-        this.image_name = image_name;
-    }
+   
+
 
     public Utilisateur(String nom, String prenom, int telephone, String adresse, String email, String image_name) {
         this.nom = nom;
@@ -57,13 +50,7 @@ public class Utilisateur {
         this.image_name = image_name;
     }
 
-    public Utilisateur(String nom, String prenom, int telephone, String adresse, String email) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.telephone = telephone;
-        this.adresse = adresse;
-        this.email = email;
-    }
+  
 
     public Utilisateur(int id, String nom, String prenom, int telephone, String adresse, String email, String image_name) {
         this.id = id;
@@ -107,10 +94,7 @@ public class Utilisateur {
         return telephone;
     }
 
-    public Set<String> getRoles() {
-        return roles;
-    }
-
+  
     public void setTelephone(int telephone) {
         this.telephone = telephone;
     }
@@ -139,9 +123,7 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
-    }
+   
 
     public String getImage_name() {
         return image_name;
@@ -151,12 +133,30 @@ public class Utilisateur {
         this.image_name = image_name;
     }
 
-   
+    public List<Commande> getCommandes() {
+        return commandes;
+    }
 
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
+    }
+
+
+     public String RoleToBase(){
+return "";
+     }
+
+    public String getActivation_token() {
+        return activation_token;
+    }
+
+    public void setActivation_token(String activation_token) {
+        this.activation_token = activation_token;
+    }
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", telephone=" + telephone + ", adresse=" + adresse + ", password=" + password + ", email=" + email + ", roles=" + roles + '}';
+        return "Utilisateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", telephone=" + telephone + ", adresse=" + adresse + ", password=" + password + ", email=" + email + ", image_name=" + image_name + ", commandes=" + commandes + '}';
     }
-    
+
 }

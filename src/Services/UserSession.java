@@ -8,8 +8,6 @@ package Services;
 import Entites.Produit;
 import Entites.Utilisateur;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -39,6 +37,9 @@ import java.util.Set;
    public void AddLignePanier(Produit produit){
        panier.put(produit,1);
    }
+     public void RemoveLignePanier(Produit produit){
+       panier.remove(produit);
+   }
      public void SetLignePanier(Produit produit,Integer quantite){
        panier.put(produit,quantite);
    }
@@ -51,9 +52,8 @@ import java.util.Set;
         return instance;
     }
     public static void setInstace(Utilisateur utilisateur) {
-        if(instance == null) {
             instance = new UserSession(utilisateur);
-        }
+        
     }
     
   
