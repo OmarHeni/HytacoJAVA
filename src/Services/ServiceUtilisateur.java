@@ -5,6 +5,9 @@
  */
 package Services;
 
+import Entites.Admin;
+import Entites.Client;
+import Entites.Fournisseur;
 import Entites.Utilisateur;
 import Utils.MaConnexion;
 import java.io.IOException;
@@ -33,25 +36,25 @@ public class ServiceUtilisateur {
     }
     
       public  int Inscription(Utilisateur utilisateur) {
+          String role = " ";
         // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value en regarde le cryptage de fosuserbundle il utilise $2y$13$.
         int workload = 13;
         int status = 0;
-        String sql = "INSERT INTO utilisateur(nom,password,email,roles,prenom,adresse,telephone,image_name) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO utilisateur(nom,password,email,roles,prenom,adresse,telephone,image_name,activation_token) VALUES(?,?,?,?,?,?,?,?,?)";
 
         try {
-
-            
           PreparedStatement  preparedStatement = cnx.prepareStatement(sql);
             preparedStatement.setString(1, utilisateur.getNom());
             String mdp = BCrypt.hashpw(utilisateur.getPassword(), BCrypt.gensalt(workload));
             preparedStatement.setString(2, mdp.replaceFirst("2a", "2y"));
             preparedStatement.setString(3, utilisateur.getEmail());
-            preparedStatement.setString(4, "[\"ROLE_CLIENT\"]");
+            preparedStatement.setString(4, utilisateur.RoleToBase());
             preparedStatement.setString(5, utilisateur.getPrenom());
             preparedStatement.setString(6, utilisateur.getAdresse());
             preparedStatement.setInt(7, utilisateur.getTelephone());
             preparedStatement.setString(8, utilisateur.getImage_name());
-
+            preparedStatement.setString(9, utilisateur.getActivation_token());
+            
             status = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +63,6 @@ public class ServiceUtilisateur {
     }
       
        public  int ModifierUtilisateur(Utilisateur utilisateur) {
-        // Define the BCrypt workload to use when generating password hashes. 10-31 is a valid value en regarde le cryptage de fosuserbundle il utilise $2y$13$.
         int workload = 13;
         int status = 0;
         System.out.println(utilisateur.toString());
@@ -82,29 +84,49 @@ public class ServiceUtilisateur {
         }
         return status;
     }
+   public  int ModifierMotdePasse(String email,String mdp) {
+        int workload = 13;
+        int status = 0;
+        String sql = "UPDATE utilisateur SET password =? WHERE email=?";
 
+        try {
+            String pass = BCrypt.hashpw(mdp, BCrypt.gensalt(workload));
+            PreparedStatement  preparedStatement = cnx.prepareStatement(sql);
+            preparedStatement.setString(1, pass.replaceFirst("2a", "2y"));
+            preparedStatement.setString(2, email);
+  
+
+            status = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
     public  boolean testMotDePasse(String motDePasseGUI, String motDePasseBD) {
         boolean password_verified = false;
-
         if (null == motDePasseBD) {
             throw new java.lang.IllegalArgumentException("Invalid hash provided for comparison");
         }
-
-        // en remplaçant 2y par 2a le cryptage on obtient le cryptage par defaut pour que la methode checkpw puisse comparer
         password_verified = BCrypt.checkpw(motDePasseGUI, motDePasseBD.replaceFirst("2y", "2a"));
-
         return (password_verified);
     }
 
     public  List<Utilisateur> getTtUtilisateur() throws IOException {
+        Utilisateur utilisateur =null ;
         List<Utilisateur> list = new ArrayList<Utilisateur>();
         try {
             String sql = "select * from Utilisateur ";
             PreparedStatement preparedStatement = (PreparedStatement) cnx.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                             
-                Utilisateur utilisateur = new Utilisateur();
+System.out.print(resultSet.getString("roles"));
+   if (resultSet.getString("roles").equals("[\"ROLE_ADMIN\"]")){
+                        utilisateur = new Admin();
+   }else if (resultSet.getString("roles").equals("[\"ROLE_FOUR\"]")){
+                        utilisateur = new Fournisseur();
+   } else if (resultSet.getString("roles").equals("[\"ROLE_CLIENT\"]")) {
+                         utilisateur = new Client();
+   } 
                 utilisateur.setId(resultSet.getInt("id"));
                 utilisateur.setNom(resultSet.getString("nom"));
                 utilisateur.setPrenom(resultSet.getString("prenom"));
@@ -113,52 +135,18 @@ public class ServiceUtilisateur {
                 utilisateur.setAdresse(resultSet.getString("adresse"));
                 utilisateur.setTelephone(resultSet.getInt("telephone"));
                 utilisateur.setImage_name(resultSet.getString("image_name"));
-               
-ObjectMapper mapper = new ObjectMapper();
-
-List<String> rolesList = new ArrayList<>();
-
-rolesList = Arrays.asList(mapper.readValue(resultSet.getString("roles"), String[].class));
-   Set<String>  rolesSet =  rolesList.stream().collect(Collectors.toSet());
-utilisateur.setRoles(rolesSet);
-                list.add(utilisateur);
-                
+                utilisateur.setActivation_token(resultSet.getString("activation_token"));
+                                       list.add(utilisateur);
             }
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
         return list;
-
     }
 
-    public  Utilisateur getUtilisateur(String nomUtilisateur) {
-        Utilisateur utilisateur = null;
-        try {
-            String sql = "select * from utilisateur where nom = ?";
-            PreparedStatement preparedStatement =  cnx.prepareStatement(sql);
-            preparedStatement.setString(1, nomUtilisateur);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                utilisateur = new Utilisateur();
-                utilisateur.setId(resultSet.getInt("id"));
-                utilisateur.setNom(resultSet.getString("nom"));
-                utilisateur.setPrenom(resultSet.getString("prenom"));
-                utilisateur.setPassword(resultSet.getString("password"));
-                utilisateur.setEmail(resultSet.getString("email"));
-                utilisateur.setAdresse(resultSet.getString("adresse"));
-                utilisateur.setTelephone(resultSet.getInt("telephone"));
-            }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return utilisateur;
-    }
      public  int SupprimerUtilisateur(Utilisateur utilisateur) {
-  
-         
         int status = 0;
         String sql = "DELETE FROM utilisateur where id = ?";
         try {

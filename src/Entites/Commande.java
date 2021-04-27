@@ -15,30 +15,26 @@ public class Commande  {
     private Integer id ;
     private Date date ;
     private Integer idclient ;
-    private Integer idproduit ;
-    private Integer quantite ;
     private Double prix;
+    private Livraison livraison ;
 
     public Commande() {
     }
 
-    public Commande(Date date, Integer idclient, Integer idproduit, Integer quantite, Double prix) {
+    public Commande(Date date, Integer idclient,  Double prix) {
         this.date = date;
         this.idclient = idclient;
-        this.idproduit = idproduit;
-        this.quantite = quantite;
         this.prix = prix;
     }
 
-    public Commande(Integer id, Date date, Integer idclient, Integer idproduit, Integer quantite, Double prix) {
+    public Commande(Integer id, Date date, Integer idclient, Double prix) {
         this.id = id;
         this.date = date;
         this.idclient = idclient;
-        this.idproduit = idproduit;
-        this.quantite = quantite;
         this.prix = prix;
     }
 
+  
     public Integer getId() {
         return id;
     }
@@ -63,28 +59,25 @@ public class Commande  {
         this.idclient = idclient;
     }
 
-    public Integer getIdproduit() {
-        return idproduit;
-    }
-
-    public void setIdproduit(Integer idproduit) {
-        this.idproduit = idproduit;
-    }
-
-    public Integer getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(Integer quantite) {
-        this.quantite = quantite;
-    }
-
     public Double getPrix() {
         return prix;
     }
 
     public void setPrix(Double prix) {
         this.prix = prix;
+    }
+
+    public Livraison getLivraison() {
+        return livraison;
+    }
+
+    public void setLivraison(Livraison livraison) {
+        this.livraison = livraison;
+    }
+
+    @Override
+    public String toString() {
+        return "Commande{" + "id=" + id + ", date=" + date + ", idclient=" + idclient + ", prix=" + prix + '}';
     }
     
 }

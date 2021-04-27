@@ -8,18 +8,24 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Hytaco.jar" size="9348467" download="eager" />
+    <jar href="Hytaco.jar" size="18232214" download="eager" />
     <jar href="lib\AnimateFX-1.2.0.jar" size="85823" download="eager" />
     <jar href="lib\commons-io-2.8.0.jar" size="285424" download="eager" />
+    <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />
     <jar href="lib\fontawesomefx-8.1.jar" size="179086" download="eager" />
+    <jar href="lib\gson-2.8.2.jar" size="232932" download="eager" />
+    <jar href="lib\httpclient-4.5.13.jar" size="780321" download="eager" />
+    <jar href="lib\httpcore-4.4.13.jar" size="328593" download="eager" />
     <jar href="lib\jackson-core-asl-1.5.0.jar" size="171612" download="eager" />
     <jar href="lib\jackson-mapper-asl-1.5.0.jar" size="483809" download="eager" />
+    <jar href="lib\javax.mail.jar" size="659033" download="eager" />
     <jar href="lib\jbcrypt-0.3m.jar" size="17750" download="eager" />
+    <jar href="lib\json-20140107.jar" size="64952" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
+    <jar href="lib\okhttp-3.9.0.jar" size="405733" download="eager" />
+    <jar href="lib\okio-1.13.0.jar" size="81811" download="eager" />
+    <jar href="lib\stripe-java-6.5.0.jar" size="399818" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Hytaco" >
-    <param name="requiredFXVersion" value="8.0+"/>
-  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="hytaco.Hytaco"  name="Hytaco" />
   <update check="always"/>
 </jnlp>

@@ -3,18 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Services/ServiceCommande.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Entites/Utilisateur.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/hytaco/Hytaco.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Utils/MaConnexion.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/css/Dashboard.css</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/hytaco/LoginController.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Services/ServiceUtilisateur.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Entites/CommandeAff.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/hytaco/AfficherUtilisateursController.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/css/login.css</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/hytaco/PanierController.java</file>
-            <file>file:/C:/Users/user/Documents/JAVA/Hytaco/src/Entites/Commande.java</file>
+            <file>file:/C:/Users/Hassene/Documents/HytacoJAVA/src/Controller/ProfileController.java</file>
+            <file>file:/C:/Users/Hassene/Documents/HytacoJAVA/src/Controller/CommandeController.java</file>
+            <file>file:/C:/Users/Hassene/Documents/HytacoJAVA/src/Controller/PanierController.java</file>
+            <file>file:/C:/Users/Hassene/Documents/HytacoJAVA/src/Controller/AfficherUtilisateursController.java</file>
+            <file>file:/C:/Users/Hassene/Documents/HytacoJAVA/src/Controller/AfficherCommandeController.java</file>
         </group>
     </open-files>
 </project-private>
