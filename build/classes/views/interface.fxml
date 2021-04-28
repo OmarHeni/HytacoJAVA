@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="789.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InterfaceController">
+   <children>
+      <TableView fx:id="tv_evenement" layoutX="13.0" layoutY="69.0" onMouseClicked="#handleMouseButton" prefHeight="250.0" prefWidth="713.0">
+        <columns>
+          <TableColumn fx:id="cl_id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="cl_nom" prefWidth="75.0" text="Nom" />
+            <TableColumn fx:id="cl_dated" prefWidth="95.0" text="Date du début" />
+            <TableColumn fx:id="cl_image" prefWidth="165.0" text="Image" />
+            <TableColumn fx:id="cl_nbrp" minWidth="0.0" prefWidth="118.0" text="Nombre de place" />
+            <TableColumn fx:id="cl_datef" prefWidth="103.0" text="Date de fin" />
+            <TableColumn fx:id="cl_lieu" prefWidth="81.0" text="Lieu" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tf_image" layoutX="132.0" layoutY="452.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="tf_nbrp" layoutX="132.0" layoutY="499.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="tf_lieu" layoutX="132.0" layoutY="590.0" prefHeight="25.0" prefWidth="174.0" />
+      <TextField fx:id="tf_nom" layoutX="132.0" layoutY="359.0" prefHeight="25.0" prefWidth="174.0" />
+      <Text layoutX="45.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" />
+      <Text layoutX="29.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date début" />
+      <Text layoutX="47.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" wrappingWidth="59.40234023332596" />
+      <DatePicker fx:id="tf_datedeb" layoutX="132.0" layoutY="407.0" />
+      <Text layoutX="13.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de place" />
+      <Button fx:id="btn_import" layoutX="254.0" layoutY="453.0" mnemonicParsing="false" onAction="#importer" text="Import" />
+      <DatePicker fx:id="tf_datefin" layoutX="132.0" layoutY="546.0" />
+      <Text layoutX="29.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de fin" />
+      <Text layoutX="37.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu" />
+      <Button fx:id="btn_ajout" layoutX="389.0" layoutY="611.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="32.0" prefWidth="187.0" text="Ajouter" />
+      <Button fx:id="btn_modifier" layoutX="389.0" layoutY="643.0" mnemonicParsing="false" onAction="#modifier" prefHeight="32.0" prefWidth="187.0" text="Modifier" />
+      <Button fx:id="btn_supprimer" layoutX="389.0" layoutY="675.0" mnemonicParsing="false" onAction="#delete" prefHeight="32.0" prefWidth="187.0" text="Supprimer" />
+      <TextField fx:id="txtRech" layoutX="13.0" layoutY="44.0" onKeyReleased="#rechercher" prefHeight="25.0" prefWidth="713.0" />
+      <PieChart fx:id="piechart" layoutX="425.0" layoutY="376.0" prefHeight="196.0" prefWidth="304.0" />
+   </children>
+</AnchorPane>

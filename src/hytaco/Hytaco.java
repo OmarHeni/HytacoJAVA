@@ -5,34 +5,47 @@
  */
 package hytaco;
 
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  *
- * @author user
+ * @author Firqs
  */
 public class Hytaco extends Application {
     
+    private Stage primaryStage;
+    private Parent parentPage;
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+    public void start(Stage primaryStage)  {
         
-        Scene scene = new Scene(root);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(scene);
-        stage.show();
-    }
+        this.primaryStage = primaryStage;
+        
+        try { 
+         //parentPage = FXMLLoader.load(getClass().getResource("/views/interface.fxml"));
+        //parentPage = FXMLLoader.load(getClass().getResource("/views/sponsor.fxml"));
+         // parentPage = FXMLLoader.load(getClass().getResource("/views/evenements.fxml"));
+         //parentPage = FXMLLoader.load(getClass().getResource("/views/sponors.fxml"));
+          //parentPage = FXMLLoader.load(getClass().getResource("/views/front.fxml"));
+           parentPage = FXMLLoader.load(getClass().getResource("/views/propositionback.fxml"));
+        Scene scene = new Scene(parentPage);
+        this.primaryStage.setScene(scene);
+        this.primaryStage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    /**
-     * @param args the command line arguments
-     */
+    }
     public static void main(String[] args) {
-        launch(args);
+    launch(args);
     }
     
 }
