@@ -5,6 +5,7 @@
  */
 package projet.controller;
 
+import animatefx.animation.SlideInDown;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -39,6 +40,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import projet.controller.AjoutProduitsGUIController;
@@ -46,6 +50,7 @@ import projet.models.produits;
 import projet.models.publicite;
 import projet.service.ProduitsService;
 import projet.service.PubliciteService;
+import projet.service.UserSession;
 /**
  * FXML Controller class
  *
@@ -55,20 +60,6 @@ public class ProduitsFGUIController implements Initializable {
 
     @FXML
     private AnchorPane brand;
-    @FXML
-    private Button closeb;
-    @FXML
-    private Label Reclamations1;
-    @FXML
-    private Label Programmes1;
-    @FXML
-    private Label Evenements1;
-    @FXML
-    private Label Locaux1;
-    @FXML
-    private Label Propositions1;
-    @FXML
-    private Label Panier1;
 
     @FXML
     private TextField Searchp;
@@ -79,13 +70,39 @@ public class ProduitsFGUIController implements Initializable {
     @FXML
     private Button Alerts;
     @FXML
-    private Button campi;
-    @FXML
     private VBox affich_produit;
     private ProduitsService cp = new ProduitsService();
       private produits o;
 
      List<produits> liste = new ArrayList <produits>();
+    @FXML
+    private Pane pane_m;
+    @FXML
+    private Button to_profile;
+    @FXML
+    private Button to_panier;
+    @FXML
+    private Button Reclamations;
+    @FXML
+    private Label alerts;
+    @FXML
+    private Button Programmes;
+    @FXML
+    private Button Locaux;
+    @FXML
+    private Button Evenements;
+    @FXML
+    private Button Proposition;
+    @FXML
+    private Label Propositions;
+    @FXML
+    private Circle circle;
+    @FXML
+    private Button nom_u;
+    @FXML
+    private Button to_menu;
+    @FXML
+    private Button Accueil;
     
      
      
@@ -161,8 +178,20 @@ vboxx.getChildren().add(hbell);
 hbell = new HBox();
 }
         }
+     public void setImageU() {
+               nom_u.setText(UserSession.getInstace().getUtilisateur().getPrenom()+" "+UserSession.getInstace().getUtilisateur().getNom());
+
+        File file = new File (System.getProperty("user.dir") + "\\src\\image\\" +UserSession.getInstace().getUtilisateur().getImage_name());
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(AfficherUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void initialize(URL url, ResourceBundle rb) {
-    Font.loadFont(getClass().getResourceAsStream("/css/SourceSansPro-Regular.ttf"), 14);
+                   setImageU();
+
+        Font.loadFont(getClass().getResourceAsStream("/css/SourceSansPro-Regular.ttf"), 14);
               setVBOXP();
 HBox item = new HBox();
                     affich_produit.getChildren().add(item);
@@ -230,10 +259,6 @@ int taille=liste.size();
     }
     }    
 
-    @FXML
-    private void Close(ActionEvent event) {
-        
-    }
 
 
     @FXML
@@ -256,7 +281,6 @@ int taille=liste.size();
         stage.show();
     }
 
-    @FXML
     private void campi(ActionEvent event) throws IOException {
          Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -265,5 +289,124 @@ int taille=liste.size();
         stage.setScene(scene);
         stage.show();
     }
+
+    @FXML
+    private void ToMenu(ActionEvent event) {
+        if (!(pane_m.isVisible())){
+             new SlideInDown(pane_m).play();
+                 pane_m.setVisible(true);
+        }else {
+                 pane_m.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void Deconnexion(ActionEvent event) {
+          Parent   root=null;
+          UserSession.setInstace(null);
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Login.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+
+    @FXML
+    private void Reclamations(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamationfront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Programmes(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AnnonceFront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Locaux(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/LocauxFront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Evenements(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/front.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Proposition(ActionEvent event)throws IOException {
+        
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/propositionfront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+     @FXML
+    private void To_Panier(ActionEvent event) {
+         Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Panier.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+    @FXML
+    private void To_Profile(ActionEvent event) {
+                Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Profile.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+    @FXML
+    private void To_Accueil(ActionEvent event) {
+               Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/accueilFGUI.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
 
 }

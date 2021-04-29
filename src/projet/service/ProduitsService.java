@@ -46,13 +46,14 @@ public class ProduitsService implements Iproduits{
     @Override
     public void ajouteproduits(produits p) {
     try {
-        String sql = "insert into produits(nom,description,image_name,quantite,prix)"+"values(?,?,?,?,?)";
+        String sql = "insert into produits(categorie_id,nom,description,image_name,quantite,prix)"+"values(?,?,?,?,?,?)";
         ste = cnx.prepareStatement(sql);
-        ste.setString(1, p.getNom_produit());
-        ste.setString(2, p.getDescription_produit());       
-        ste.setString(3, p.getImage_name());
-        ste.setInt(4, p.getQuantite_produit());
-        ste.setDouble(5, p.getPrix_produit());
+        ste.setInt(1, p.getCategorie_id());
+        ste.setString(2, p.getNom_produit());
+        ste.setString(3, p.getDescription_produit());       
+        ste.setString(4, p.getImage_name());
+        ste.setInt(5, p.getQuantite_produit());
+        ste.setDouble(6, p.getPrix_produit());
         ste.executeUpdate();
              System.out.println("prdouuit ajoutée!");
          }catch (SQLException ex) {
@@ -85,7 +86,7 @@ public class ProduitsService implements Iproduits{
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while(rs.next()){
-                produits a = new produits(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6));                
+                produits a = new produits(rs.getInt("id"),rs.getString("nom"), rs.getString("description"),rs.getString("image_name"),rs.getInt("quantite"),rs.getDouble("prix"));                
                 list.add(a);
             }
             System.out.println("List des produits à été crée!");
@@ -119,7 +120,7 @@ public class ProduitsService implements Iproduits{
     public void modifierproduits(produits p) 
     {
    
-String req ="UPDATE produits SET nom='"+p.getNom_produit()+"',description='"+p.getDescription_produit()+"',quantite="+p.getQuantite_produit()+", prix="+p.getPrix_produit()+", image_name='"+p.getImage_name()+"' WHERE id="+p.getId_produit() ;
+String req ="UPDATE produits SET categorie_id='"+p.getCategorie_id()+"',nom='"+p.getNom_produit()+"',description='"+p.getDescription_produit()+"',quantite="+p.getQuantite_produit()+", prix="+p.getPrix_produit()+", image_name='"+p.getImage_name()+"' WHERE id="+p.getId_produit() ;
     try {
              PreparedStatement st1 = cnx.prepareStatement(req);
              //String value1 = tf_instru.getText();
@@ -151,7 +152,7 @@ String req ="UPDATE produits SET nom='"+p.getNom_produit()+"',description='"+p.g
               //  Promotion p=new Promotion();
                 //p.setNom_promotion(rs.getString(2));
                 //p.setId(rs.getInt(1));
-                myList.add(new produits(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4),rs.getInt(5),rs.getDouble(6)));
+                myList.add(new produits(rs.getInt("id"),rs.getString("nom"), rs.getString("description"),rs.getString("image_name"),rs.getInt("quantite"),rs.getDouble("prix")));
              
 
             }                                    

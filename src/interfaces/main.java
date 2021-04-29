@@ -11,7 +11,9 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -23,12 +25,16 @@ public class main extends Application {
     @Override
    public void start(Stage primaryStage)  
     {
+          
         this.primaryStage = primaryStage;
         try { 
-        parentPage = FXMLLoader.load(getClass().getResource("ProduitsFGUI.fxml"));
+        parentPage = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene = new Scene(parentPage);
+         primaryStage.initStyle(StageStyle.UNDECORATED);
         this.primaryStage.setScene(scene);
         this.primaryStage.show();
+         StackPane root = new StackPane();
+        new animatefx.animation.BounceIn(root).play();
         }catch (IOException e)
         {
             e.printStackTrace();

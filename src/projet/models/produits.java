@@ -11,6 +11,7 @@ package projet.models;
  */
 public class produits {
     private int id_produit;
+    private int categorie_id;
     private String nom_produit;
     private String description_produit;
     private int quantite_produit;
@@ -28,7 +29,17 @@ public class produits {
         this.prix_produit =prix_produit ;
         this.image_name =image_name ;
     }
-
+    
+    public produits(int id_produit,int categorie_id, String nom_produit, String description_produit, String image_name, int quantite_produit, Double prix_produit) 
+    {
+        this.id_produit = id_produit;
+        this.categorie_id = categorie_id;
+        this.nom_produit = nom_produit;
+        this.description_produit = description_produit;
+        this.quantite_produit = quantite_produit;
+        this.prix_produit =prix_produit ;
+        this.image_name =image_name ;
+    }
     public produits(String nom_produit, String description_produit, String image_name, int quantite_produit, Double prix_produit) 
     {
         this.nom_produit = nom_produit;
@@ -49,6 +60,20 @@ public class produits {
      */
     public void setId_produit(int id_produit) {
         this.id_produit = id_produit;
+    }
+    
+       /**
+     * @return the categorie_id
+     */
+    public int getCategorie_id() {
+        return categorie_id;
+    }
+
+        /**
+     * @param categorie_id the categorie_id to set
+     */
+    public void setCategorie_id(int categorie_id) {
+        this.categorie_id = categorie_id;
     }
     
     /**

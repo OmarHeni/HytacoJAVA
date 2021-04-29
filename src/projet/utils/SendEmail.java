@@ -60,9 +60,13 @@ public class SendEmail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Produit ajouté");
-            String htmlCode = "<h1> Par cet email présent </h1>";
-            message.setContent(htmlCode, "text/html");
+            message.setSubject("Alerte!");
+            String htmlCode = "Par cet email présent nous vous proposons ces numéros pour vous aider: \n" +
+"                193          : Garde nationale.\n" +
+"                197          : Police nationale.\n" +
+"                198          : Protection civile.\n" +
+"                801111      : numéro vert.";
+            message.setContent(htmlCode,"text/html");
             return message;
         } catch (Exception ex) {
             Logger.getLogger(SendEmail.class.getName()).log(Level.SEVERE, null, ex);

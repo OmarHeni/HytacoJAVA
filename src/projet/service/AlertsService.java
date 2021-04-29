@@ -52,13 +52,14 @@ public class AlertsService {
     
     public void ajouteAlerts(Alerts c){
          try {
-        String sql = "insert into alerts(localisation,date,rapport,telephone,mail)"+"values(?,?,?,?,?)";
+        String sql = "insert into alerts(programme_id,localisation,date,rapport,telephone,mail)"+"values(?,?,?,?,?,?)";
         ste = cnx.prepareStatement(sql);
-        ste.setString(1, c.getLocalisation());
-        ste.setDate(2,(Date) c.getDate());
-        ste.setString(3, c.getRapport());
-        ste.setInt(4, c.getTelephone());
-        ste.setString(5, c.getMail());
+        ste.setInt(1, c.getProgramme_id());
+        ste.setString(2, c.getLocalisation());
+        ste.setDate(3,(Date) c.getDate());
+        ste.setString(4, c.getRapport());
+        ste.setInt(5, c.getTelephone());
+        ste.setString(6, c.getMail());
         ste.executeUpdate();
              System.out.println("Alert ajoutée!");
          }catch (SQLException ex) {
@@ -67,7 +68,7 @@ public class AlertsService {
     }
     
     public void modifierAlerts(Alerts a){
-        String req = "UPDATE alerts SET localisation='"+a.getLocalisation()+"',date='"+a.getDate()+"',rapport="+a.getRapport()+", telephonne="+a.getTelephone()+", mail='"+a.getMail()+"' WHERE id="+a.getId() ;
+        String req = "UPDATE alerts SET programme_id='"+a.getProgramme_id()+"',localisation='"+a.getLocalisation()+"',date='"+a.getDate()+"',rapport="+a.getRapport()+", telephonne="+a.getTelephone()+", mail='"+a.getMail()+"' WHERE id="+a.getId() ;
         try {
             PreparedStatement st1 = cnx.prepareStatement(req);
              
@@ -102,7 +103,7 @@ public class AlertsService {
             ResultSet rs = pst.executeQuery();
             while(rs.next())
             {
-                Alerts a = new Alerts(rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getString(4),rs.getInt(5),rs.getString(6));                
+                Alerts a = new Alerts(rs.getInt("id"),rs.getString("localisation"),rs.getDate("date"),rs.getString("rapport"),rs.getInt("telephone"),rs.getString("mail"));                
                 list.add(a);
             }
             System.out.println("List des alerts à été crée!");

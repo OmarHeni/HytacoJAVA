@@ -134,6 +134,17 @@ String req ="UPDATE categories SET nom='"+p.getNom_categorie()+"',description='"
         }
         return myList;
     }
-  
+  public ArrayList<categories> DisplayAll() throws SQLException {
+        ArrayList<categories> TabP = new ArrayList<>();
+        String req = "SELECT * FROM categories";
+        PreparedStatement p;
+        p = cnx.prepareStatement(req);
+        ResultSet rs = p.executeQuery();
+        while (rs.next()) { 
+
+            TabP.add(new categories(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4)));
+        }
+        return TabP;
+    }
 }
 

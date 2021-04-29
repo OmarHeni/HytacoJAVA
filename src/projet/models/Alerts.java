@@ -15,6 +15,7 @@ import java.sql.Date;
 public class Alerts {
        
     private int id;
+    private int programme_id; 
     private String localisation;
     private Date date;
     private String rapport;
@@ -23,7 +24,8 @@ public class Alerts {
                     
     public Alerts(){}
 
-    public Alerts(int id, String localisation, Date date, String rapport, int telephone, String mail) {
+    public Alerts(int id, String localisation, Date date, String rapport, int telephone, String mail) 
+    {
         this.id = id;
         this.localisation = localisation;
         this.date = date;
@@ -31,13 +33,29 @@ public class Alerts {
         this.telephone = telephone;
         this.mail = mail;
     }
-
+    public Alerts(int id,int programme_id, String localisation, Date date, String rapport, int telephone, String mail) 
+    {
+        this.id = id;
+        this.programme_id = programme_id;
+        this.localisation = localisation;
+        this.date = date;
+        this.rapport = rapport;
+        this.telephone = telephone;
+        this.mail = mail;
+    }
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+    public int getProgramme_id() {
+        return programme_id;
+    }
+
+    public void setProgramme_id(int programme_id) {
+        this.programme_id = programme_id;
     }
 
     public String getLocalisation() {

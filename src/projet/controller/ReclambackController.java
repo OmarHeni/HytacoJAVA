@@ -5,6 +5,7 @@
  */
 package projet.controller;
 
+import animatefx.animation.SlideInLeft;
 import projet.models.Reclamations;
 import projet.service.ReclamationsServices;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -15,6 +16,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +33,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
@@ -65,9 +70,7 @@ public class ReclambackController implements Initializable {
     @FXML
     private Circle circle;
     @FXML
-    private Label nom_u;
-    @FXML
-    private FontAwesomeIcon arrow;
+    private Button nom_u;
     @FXML
     private Label test;
     @FXML
@@ -99,7 +102,15 @@ public class ReclambackController implements Initializable {
     @FXML
     private Label e_prenom;
     @FXML
-    private TextField searchu;
+    private VBox Activite_menu;
+    @FXML
+    private VBox Convention_menu;
+    @FXML
+    private VBox Produit_menu;
+    @FXML
+    private VBox Fonctionnalites_menu;
+    @FXML
+    private VBox Transport_menu;
 
     /**
      * Initializes the controller class.
@@ -115,10 +126,49 @@ public class ReclambackController implements Initializable {
         coltype.setCellValueFactory(new PropertyValueFactory<>("type"));
         coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        FilteredList<Reclamations> filteredData = new FilteredList<>(data,b-> true);
+        
+          search.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(Reclamations -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (Reclamations.getType().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches nom entreprise.
+				} 
+                                 else if (Reclamations.getDescription().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches email.
+				}
+                                 else if (Reclamations.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches localisation.
+				} 
+                                                                    
+				     else  
+                                         return false; // Does not match.
+			});
+		});
+          // 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Reclamations> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tv.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		
+               tv.setItems(sortedData);
     }    
 
     @FXML
     private void Close(ActionEvent event) {
+              Stage window = (Stage) closeb.getScene().getWindow();
+        window.close();
     }
 
     @FXML
@@ -203,24 +253,244 @@ public class ReclambackController implements Initializable {
         colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
     }
 
-    @FXML
     private void loadscreen(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/tansback.fxml"));/* Exception */
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/tansback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void load(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamationfront.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    private void load(ActionEvent event) throws IOException {
-        Node node = (Node) event.getSource();
+    private void ToUtilisateur(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/reclamationfront.fxml"));/* Exception */
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherUtilisateur.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    
+
+
+
+    @FXML
+    private void To_ProfileB(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/ProfileB.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Activite(ActionEvent event) {
+        if (!(Activite_menu.isVisible())){
+             new SlideInLeft(Activite_menu).play();
+                 Activite_menu.setVisible(true);
+        }else {
+                 Activite_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Convention(ActionEvent event) {
+           if (!(Convention_menu.isVisible())){
+             new SlideInLeft(Convention_menu).play();
+                 Convention_menu.setVisible(true);
+        }else {
+                 Convention_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Produit(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AjoutproduitsGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Transport(ActionEvent event)  {
+           if (!(Transport_menu.isVisible())){
+             new SlideInLeft(Transport_menu).play();
+                 Transport_menu.setVisible(true);
+        }else {
+                 Transport_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Fonctionnalite(ActionEvent event) {
+           if (!(Fonctionnalites_menu.isVisible())){
+             new SlideInLeft(Fonctionnalites_menu).play();
+                 Fonctionnalites_menu.setVisible(true);
+        }else {
+                 Fonctionnalites_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Programme(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/interfacep.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Evenement(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/evenements.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Locaux(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/interfaceloc.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Publicite(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/PubliciteGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Sponsor(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/sponors.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Categorie(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/CategoriesGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Commande(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherCommandes.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Transporteur(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/tansback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Livreur(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherLivreurs.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Reclamation(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Alert(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AlertsGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+  @FXML
+    private void To_ProduitM(ActionEvent event) {
+          if (!(Produit_menu.isVisible())){
+             new SlideInLeft(Produit_menu).play();
+                 Produit_menu.setVisible(true);
+        }else {
+                 Produit_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void accueilback(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AccueilBack.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_livraison(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherLivraisons.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Proposevent(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/propositionback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

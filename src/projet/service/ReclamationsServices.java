@@ -6,13 +6,14 @@
 package projet.service;
 
 import projet.models.Reclamations; 
-import projet.utils.Connexionjdbc;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import projet.utils.Connexionjdbc;
 /**
  *
  * @author ASUS
@@ -23,7 +24,7 @@ public class ReclamationsServices {
     PreparedStatement ste;
     
     public ReclamationsServices(){
-        cnx = Connexionjdbc.getInstance().getConnection();
+        this.cnx = Connexionjdbc.getInstance().getConnection();
     }
     
     public void ajouterReclamations(Reclamations c){

@@ -5,14 +5,18 @@
  */
 package projet.controller;
 
+import animatefx.animation.SlideInDown;
+import java.io.File;
 import projet.models.Transporteur;
 import projet.service.TransporteurServices;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
 import javafx.scene.image.Image;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,10 +37,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
+import projet.service.UserSession;
 
 
 
@@ -70,22 +78,6 @@ public class TransporteurfrontController implements Initializable {
     private TextField txtadresse;
     private AnchorPane rootPane;
     @FXML
-    private Button closeb;
-    @FXML
-    private Label Programmes1;
-    @FXML
-    private Label Categories1;
-    @FXML
-    private Label Evenements1;
-    @FXML
-    private Label Locaux1;
-    @FXML
-    private Label txttypee;
-    @FXML
-    private Label Panier1;
-    @FXML
-    private Label Deconnexion1;
-    @FXML
     private AnchorPane brand;
     @FXML
     private ImageView emailCheckMark;
@@ -93,6 +85,38 @@ public class TransporteurfrontController implements Initializable {
         String erreur;
     @FXML
     private ImageView telCheckMark;
+    @FXML
+    private Pane pane_m;
+    @FXML
+    private Button to_profile;
+    @FXML
+    private Button to_panier;
+    @FXML
+    private Button Reclamations;
+    @FXML
+    private Button Alerts;
+    @FXML
+    private Label alerts;
+    @FXML
+    private Button Categories;
+    @FXML
+    private Button Programmes;
+    @FXML
+    private Button Locaux;
+    @FXML
+    private Button Evenements;
+    @FXML
+    private Button Proposition;
+    @FXML
+    private Label Propositions;
+    @FXML
+    private Circle circle;
+    @FXML
+    private Button nom_u;
+    @FXML
+    private Button to_menu;
+    @FXML
+    private Button Accueil;
     /**
      * Initializes the controller class.
      */
@@ -139,17 +163,21 @@ public class TransporteurfrontController implements Initializable {
          }
     }
 
-    @FXML
-    private void Close(ActionEvent event) {
+     public void setImageU() {
+               nom_u.setText(UserSession.getInstace().getUtilisateur().getPrenom()+" "+UserSession.getInstace().getUtilisateur().getNom());
+
+        File file = new File (System.getProperty("user.dir") + "\\src\\image\\" +UserSession.getInstace().getUtilisateur().getImage_name());
+        try {
+            circle.setFill(new ImagePattern(new Image(file.toURI().toURL().toExternalForm())));
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(AfficherUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    
-
-    @FXML
     private void loadscreen(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/reclamationfront.fxml"));/* Exception */
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamationfront.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -160,7 +188,7 @@ public class TransporteurfrontController implements Initializable {
     private void load(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/tansback.fxml"));/* Exception */
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/tansback.fxml"));/* Exception */
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -241,9 +269,151 @@ public class TransporteurfrontController implements Initializable {
              return true;
 
     }
+   @FXML
+    private void Categories(ActionEvent event) throws IOException {
+                Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/accueilFGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
-    private void accueil(ActionEvent event) {
+    private void Alerts(ActionEvent event) throws IOException {
+                Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AlertsFGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    
+
+    private void campi(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/CategoriesGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void ToMenu(ActionEvent event) {
+        if (!(pane_m.isVisible())){
+             new SlideInDown(pane_m).play();
+                 pane_m.setVisible(true);
+        }else {
+                 pane_m.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void Deconnexion(ActionEvent event) {
+          Parent   root=null;
+          UserSession.setInstace(null);
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Login.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+
+    @FXML
+    private void Reclamations(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamationfront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Programmes(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AnnonceFront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Locaux(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/LocauxFront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Evenements(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/front.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void Proposition(ActionEvent event)throws IOException {
+        
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/propositionfront.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+     @FXML
+    private void To_Panier(ActionEvent event) {
+         Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Panier.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+    @FXML
+    private void To_Profile(ActionEvent event) {
+                Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/Profile.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
+    @FXML
+    private void To_Accueil(ActionEvent event) {
+               Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/interfaces/accueilFGUI.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                        
+                    Stage window = (Stage) to_profile.getScene().getWindow();
+                    window.setScene(new Scene(root));
+
+    }
+
 }

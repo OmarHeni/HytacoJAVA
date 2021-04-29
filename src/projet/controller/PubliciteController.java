@@ -5,6 +5,7 @@
  */
 package projet.controller;
 
+import animatefx.animation.SlideInLeft;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +42,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -65,17 +68,7 @@ public class PubliciteController implements Initializable {
     @FXML
     private Button Importer;
     @FXML
-    private Button categories;
-    @FXML
-    private Button produits;
-    @FXML
-    private Button alerts;
-    @FXML
-    private Button publicite;
-    @FXML
     private Button print;
-    @FXML
-    private Button closep;
     @FXML
     private AnchorPane AnOs;
     @FXML
@@ -97,6 +90,22 @@ public class PubliciteController implements Initializable {
     private TableColumn<?, ?> nompubs;
     @FXML
     private TableColumn<?, ?> lienps;
+    @FXML
+    private Button closeb;
+    @FXML
+    private Circle circle;
+    @FXML
+    private Button nom_u;
+    @FXML
+    private VBox Activite_menu;
+    @FXML
+    private VBox Convention_menu;
+    @FXML
+    private VBox Produit_menu;
+    @FXML
+    private VBox Fonctionnalites_menu;
+    @FXML
+    private VBox Transport_menu;
 
     /**
      * Initializes the controller class.
@@ -117,7 +126,6 @@ public class PubliciteController implements Initializable {
         imagep.setCellValueFactory(new PropertyValueFactory<>("image_name"));
 
                 }
-    @FXML
     private void categories(ActionEvent event) throws IOException {
         
                 Node node = (Node) event.getSource();
@@ -129,7 +137,6 @@ public class PubliciteController implements Initializable {
         
     }
 
-    @FXML
     private void produits(ActionEvent event) throws IOException {
         
                 Node node = (Node) event.getSource();
@@ -142,7 +149,6 @@ public class PubliciteController implements Initializable {
     }
 
 
-    @FXML
     private void alerts(ActionEvent event) throws IOException {
         
                 Node node = (Node) event.getSource();
@@ -155,9 +161,6 @@ public class PubliciteController implements Initializable {
     }
 
 
-    @FXML
-    private void publicite(ActionEvent event) {
-    }
 
     @FXML
     private void print(ActionEvent event) {
@@ -176,6 +179,8 @@ public class PubliciteController implements Initializable {
 
     @FXML
     private void Close(ActionEvent event) {
+              Stage window = (Stage) closeb.getScene().getWindow();
+        window.close();
     }
 
     @FXML
@@ -290,7 +295,6 @@ public class PubliciteController implements Initializable {
     
 }
 
-    @FXML
       private void campi(ActionEvent event) throws IOException {
         Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -300,5 +304,227 @@ public class PubliciteController implements Initializable {
         stage.show();
         
     }
-    
+
+     @FXML
+    private void ToUtilisateur(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherUtilisateur.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+    @FXML
+    private void To_ProfileB(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/ProfileB.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Activite(ActionEvent event) {
+        if (!(Activite_menu.isVisible())){
+             new SlideInLeft(Activite_menu).play();
+                 Activite_menu.setVisible(true);
+        }else {
+                 Activite_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Convention(ActionEvent event) {
+           if (!(Convention_menu.isVisible())){
+             new SlideInLeft(Convention_menu).play();
+                 Convention_menu.setVisible(true);
+        }else {
+                 Convention_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Produit(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AjoutproduitsGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Transport(ActionEvent event)  {
+           if (!(Transport_menu.isVisible())){
+             new SlideInLeft(Transport_menu).play();
+                 Transport_menu.setVisible(true);
+        }else {
+                 Transport_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Fonctionnalite(ActionEvent event) {
+           if (!(Fonctionnalites_menu.isVisible())){
+             new SlideInLeft(Fonctionnalites_menu).play();
+                 Fonctionnalites_menu.setVisible(true);
+        }else {
+                 Fonctionnalites_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void To_Programme(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/interfacep.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Evenement(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/evenements.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Locaux(ActionEvent event) throws IOException {
+         Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/interfaceloc.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Publicite(ActionEvent event) throws IOException {
+          Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/PubliciteGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Sponsor(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/sponors.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Categorie(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/CategoriesGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Commande(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherCommandes.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Transporteur(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/tansback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Livreur(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherLivreurs.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Reclamation(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/reclamback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Alert(ActionEvent event)throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AlertsGUI.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    private void To_ProduitM(ActionEvent event) {
+          if (!(Produit_menu.isVisible())){
+             new SlideInLeft(Produit_menu).play();
+                 Produit_menu.setVisible(true);
+        }else {
+                 Produit_menu.setVisible(false);
+        }
+    }
+
+    @FXML
+    private void accueilback(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AccueilBack.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_livraison(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/AfficherLivraisons.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void To_Proposevent(ActionEvent event) throws IOException {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/interfaces/propositionback.fxml"));/* Exception */
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

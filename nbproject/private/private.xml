@@ -3,12 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/java/Campi/src/projet/models/produits.java</file>
-            <file>file:/C:/xampp/java/Campi/src/projet/controller/AjoutCategorieController.java</file>
-            <file>file:/C:/xampp/java/Campi/src/projet/controller/AjoutProduitsGUIController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/ReclamationfrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/AnnonceFrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/AccueilBackController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/AjoutProgFrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/interfaces/main.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/ProduitsFGUIController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/FrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/TransporteurfrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/interfaces/details.fxml</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/DetailsController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/LocauxFrontController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/PanierController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/DetailproduitsController.java</file>
             <file>file:/C:/xampp/java/Campi/src/projet/controller/AlertsFGUIController.java</file>
-            <file>file:/C:/xampp/java/Campi/src/projet/controller/AlertsController.java</file>
-            <file>file:/C:/xampp/java/Campi/src/projet/service/ProduitsService.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/ProfileController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/StatProduitsController.java</file>
+            <file>file:/C:/xampp/java/Campi/src/projet/controller/PropositionfrontController.java</file>
         </group>
     </open-files>
 </project-private>

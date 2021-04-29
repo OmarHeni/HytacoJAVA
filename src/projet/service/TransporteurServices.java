@@ -6,13 +6,14 @@
 package projet.service;
 
 import projet.models.Transporteur; 
-import projet.utils.Connexionjdbc;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import projet.utils.Connexionjdbc;
 /**
  *
  * @author ASUS
@@ -23,7 +24,7 @@ public class TransporteurServices {
     PreparedStatement ste;
     
     public TransporteurServices(){
-        cnx = Connexionjdbc.getInstance().getConnection();
+        this.cnx = Connexionjdbc.getInstance().getConnection();
     }
     
     public void ajouterTransporteur(Transporteur t){
