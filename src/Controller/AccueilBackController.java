@@ -16,13 +16,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -64,7 +68,7 @@ public class AccueilBackController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-   // getWeather();
+    getWeather();
     }    
   public void setImage(String name) {
         File file = new File (System.getProperty("user.dir") +"\\src\\image\\"+name);
@@ -74,6 +78,7 @@ public class AccueilBackController implements Initializable {
             Logger.getLogger(AfficherUtilisateursController.class.getName()).log(Level.SEVERE, null, ex);
         }
   }
+  
     public void getWeather(){
 OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
@@ -105,22 +110,42 @@ SimpleDateFormat formatter = new SimpleDateFormat("E dd ");
             }
             else if (obj2.get("description").toString().toUpperCase().contains("CLOUD")){
     setImage("Sunny cloudy.png");
-}
+    
+}else  {
+                setImage("Sunny.png");
+        }
             description.setText(obj2.get("description").toString());
         } catch (IOException ex) {
             Logger.getLogger(AccueilBackController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML
+     @FXML
     private void ToUtilisateur(ActionEvent event) {
+            Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/Views/AfficherUtilisateur.fxml"));
+        } catch (IOException ex) {
+        }
+                                        
+                    Stage window = (Stage) to_utilisateurs.getScene().getWindow();
+                    window.setScene(new Scene(root));
+    }
+  @FXML
+    private void To_ProfileB(ActionEvent event) {
+          Parent   root=null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/Views/ProfileB.fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileBController.class.getName()).log(Level.SEVERE, null, ex);
+        }                            
+                    Stage window = (Stage) nom_u.getScene().getWindow();
+                    window.setScene(new Scene(root));
     }
 
     @FXML
     private void Close(ActionEvent event) {
     }
 
-    @FXML
-    private void To_ProfileB(ActionEvent event) {
-    }
+   
 }

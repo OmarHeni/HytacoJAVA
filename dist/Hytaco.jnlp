@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Hytaco.jar" size="18232214" download="eager" />
+    <jar href="Hytaco.jar" size="18234500" download="eager" />
     <jar href="lib\AnimateFX-1.2.0.jar" size="85823" download="eager" />
     <jar href="lib\commons-io-2.8.0.jar" size="285424" download="eager" />
     <jar href="lib\commons-logging-1.2.jar" size="61829" download="eager" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -113,7 +114,7 @@
             <Label layoutX="213.0" layoutY="251.0" text="Veuillez saisir les nouvelles informations si vous souhaitez modifier votre profil." textAlignment="CENTER" textFill="#ababab" />
          </children>
       </Pane>
-      <Pane prefHeight="78.0" prefWidth="1000.0" style="-fx-background-color: #4dc47d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
+      <Pane layoutX="1.0" layoutY="-1.0" prefHeight="78.0" prefWidth="1000.0" style="-fx-background-color: #4dc47d; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);">
          <children>
             <Button fx:id="closeb" layoutX="81.0" layoutY="41.0" mnemonicParsing="false" onAction="#Close" opacity="0.0" prefHeight="25.0" prefWidth="14.0" text="Button" />
             <HBox alignment="CENTER_LEFT" layoutX="810.0" layoutY="1.0" prefHeight="44.0" prefWidth="170.0" />
@@ -122,7 +123,7 @@
                   <Image url="@../image/Fichier%202.png" />
                </image>
             </ImageView>
-            <HBox alignment="CENTER_LEFT" layoutX="179.0" layoutY="1.0" prefHeight="78.0" prefWidth="820.0">
+            <HBox alignment="CENTER_LEFT" layoutX="251.0" layoutY="1.0" prefHeight="78.0" prefWidth="750.0">
                <children>
                   <Label fx:id="Reclamations" prefHeight="44.0" prefWidth="85.0" style="-fx-font-family: Source Sans Pro;" text="Reclamations" textFill="WHITE">
                      <font>
@@ -177,21 +178,43 @@
                         <Font name="Tahoma" size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="18.0" />
+                        <Insets left="14.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Button fx:id="to_panier" layoutX="615.0" layoutY="34.0" mnemonicParsing="false" onAction="#To_Panier" style="-fx-font-family: Source Sans Pro; -fx-background-color: transparent; -fx-font-size: 14;" text="Panier" textFill="WHITE" />
-                  <Button fx:id="to_profile" mnemonicParsing="false" onAction="#To_Profile" style="-fx-font-family: Source Sans Pro; -fx-background-color: transparent; -fx-font-size: 14;" text="Profile" textFill="WHITE" />
-                  <Label fx:id="Deconnexion" prefHeight="44.0" prefWidth="85.0" style="-fx-font-family: Source Sans Pro;" text="Deconnexion" textFill="WHITE">
-                     <font>
-                        <Font name="Tahoma" size="14.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="18.0" />
-                     </HBox.margin>
-                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="137.0">
+                     <children>
+                        <Circle fx:id="circle1" fill="WHITE" radius="18.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Button fx:id="nom_u" mnemonicParsing="false" prefHeight="30.0" prefWidth="78.0" style="-fx-background-color: transparent;" text="Button" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="to_menu" mnemonicParsing="false" onAction="#ToMenu" prefHeight="38.0" prefWidth="33.0" style="-fx-background-color: transparent;" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets top="4.0" />
+                           </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" iconName="ARROW_CIRCLE_DOWN" size="1.1em" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="pane_m" layoutX="887.0" layoutY="76.0" prefHeight="85.0" prefWidth="104.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 7, 0, 0, 0);" visible="false">
+         <children>
+            <VBox prefHeight="78.0" prefWidth="104.0">
+               <children>
+                  <Button fx:id="to_profile" mnemonicParsing="false" onAction="#To_Profile" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: transparent;" text="Profile" />
+                  <Separator prefHeight="1.0" prefWidth="66.0" />
+                  <Button fx:id="to_panier" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#To_Panier" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: transparent;" text="Panier" />
+                  <Separator layoutX="10.0" layoutY="35.0" prefWidth="200.0" />
+                  <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="25.0" prefWidth="106.0" style="-fx-background-color: transparent;" text="Deconnection" />
+                  <Separator layoutX="10.0" layoutY="63.0" prefWidth="200.0" />
+               </children>
+            </VBox>
          </children>
       </Pane>
    </children>
